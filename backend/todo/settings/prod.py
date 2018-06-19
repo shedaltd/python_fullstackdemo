@@ -1,7 +1,8 @@
 import os
 
-from .base import *
 import dj_database_url
+
+from .base import *
 
 DEBUG = True
 INTERNAL_IPS = '127.0.0.1'
