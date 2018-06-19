@@ -6,7 +6,7 @@ from .base import *
 
 DEBUG = True
 INTERNAL_IPS = '127.0.0.1'
-ALLOWED_HOSTS = ['127.0.0.1','localhost', 'backend', 'https://shedafullstackdemo.herokuapp.com']
+ALLOWED_HOSTS = ['127.0.0.1','localhost', 'backend', 'shedafullstackdemo.herokuapp.com']
 
 DATABASE_URI = os.environ['DATABASE_URL']
 DATABASES['default'] = dj_database_url.config(default=DATABASE_URI)
