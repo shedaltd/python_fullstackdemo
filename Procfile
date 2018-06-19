@@ -1,0 +1,1 @@
+web: cd backend && gunicorn todo.wsgi --log-file -
