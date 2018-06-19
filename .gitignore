@@ -2,6 +2,7 @@ env
 __pycache__
 *.sqlite3
 .DS_Store
+.vscode
 
 # Installer logs
 *.log
@@ -13,7 +14,7 @@ pip-log.txt
 *.cache
 
 # Unit test / coverage reports
-.coverage
+.coverages
 .tox
 nosetests.xml
 coverage-report.xml
