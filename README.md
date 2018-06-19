@@ -23,4 +23,5 @@
         - Heroku
         - CI
 
-3. 
+3. Setup
+    - Backend Setup
