@@ -4,6 +4,7 @@
 
 cd backend
 source env/bin/activate
+rm -rf .tox
 tox
 
 # python manage.py collectstatic --noinput # first time to deployment
