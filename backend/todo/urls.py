@@ -14,8 +14,14 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import include, path
+from rest_framework import routers
+from rest_framework_swagger.views import get_swagger_view
+
+schema_view = get_swagger_view(title='Sheda Full Stack Demo')
+router = routers.DefaultRouter(trailing_slash=True)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', schema_view)
 ]
