@@ -13,7 +13,8 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+BASE_DIR = os.path.dirname(PROJECT_DIR)
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'p-he4@%5rgt%$-5bvmnx_%uk#r6#1ds7&tvrrmtxu_no^cxsmo'
