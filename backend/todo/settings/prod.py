@@ -10,3 +10,5 @@ ALLOWED_HOSTS = ['127.0.0.1','localhost', 'backend']
 
 DATABASE_URI = os.environ['DATABASE_URL']
 DATABASES['default'] = dj_database_url.config(default=DATABASE_URI)
+import django_heroku
+django_heroku.settings(locals())
