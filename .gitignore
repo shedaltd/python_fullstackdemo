@@ -19,3 +19,4 @@ backend/.coverage
 .tox
 nosetests.xml
 coverage-report.xml
+staticfiles
