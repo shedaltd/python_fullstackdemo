@@ -4,20 +4,18 @@
     - From product perspective
         - Time to market
         - Cost
-        - Quality: mainly user experience
+        - Quality: focused on user experience
     - From developer perspective
-        - Community
+        - Developer Community
 
 2. One example choice
-    - backend: Django + rest framework
+    - backend: Django + Django Rest Framework
     - frontend:
-        - react
-        - react native
+        - React
+        - React Native
         - Electron
     - database:
-        - MySQL
-        - PostgreSQL
-        - Mongodb
+        - MySQL/PostgreSQL/MongoDB
     - Deployment
         - Docker
         - Heroku

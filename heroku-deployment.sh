@@ -7,8 +7,10 @@ source env/bin/activate
 tox
 
 # python manage.py collectstatic --noinput # first time to deployment
+
 cd ..
 heroku config:set DJANGO_SETTINGS_MODULE=todo.settings.prod
 git subtree push --prefix backend heroku master
 heroku run python manage.py migrate
-# heroku run ./run.sh # run it if deploy for the first time
+
+# heroku run ./create.sh # run it if deploy for the first time
