@@ -20,5 +20,7 @@
         - Mongodb
     - Deployment
         - Docker
+        - Heroku
+        - CI
 
 3. 
