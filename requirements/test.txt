@@ -1,6 +1,0 @@
--r base.txt
-tox
-coverage
-isort
-flake8
-pytest
