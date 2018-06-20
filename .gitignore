@@ -20,3 +20,6 @@ backend/.coverage
 nosetests.xml
 coverage-report.xml
 staticfiles
+
+# react 
+node_modules
