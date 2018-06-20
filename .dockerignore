@@ -32,3 +32,6 @@ env/
 
 web_local.version
 web_server.version
+
+# backend
+*.sqlite3

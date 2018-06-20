@@ -18,4 +18,4 @@ ADD backend/ /src/backend
 
 ENV PYTHONPATH $PYTHONPATH:/src
 
-CMD cd ./backend && python manage.py runserver
+CMD cd ./backend && python manage.py runserver 0.0.0.0:8000

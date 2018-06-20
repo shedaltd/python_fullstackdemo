@@ -52,6 +52,10 @@ services:
       << : *default-volumes
       << : *code-volumes
       command: ['sh', 'run.sh']
+      links:
+        - postgres
+      depends_on:
+        - postgres
       ports:
           - "8000:8000"
 
