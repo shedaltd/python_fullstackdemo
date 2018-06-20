@@ -1,0 +1,70 @@
+version: '3.4'
+
+x-default-volumes: &default-volumes
+    volumes:
+        - todo-data-volume:/data
+        - ./container_shared:/container_shared
+
+x-code-volumes: &code-volumes
+    volumes:
+        - "./backend:/src/backend"
+        - "./frontend:/src/frontend"
+
+x-backend-service: &backend-service
+    build:
+        context: .
+        dockerfile: "Dockerfile_django"
+    links:
+        - "postgres:postgres"
+    logging:
+        options:
+            max-size: "5m"
+            max-file: "1"
+    working_dir: "/src/backend"
+    environment:
+        DB_HOST: postgres
+        PYTHONUNBUFFERED: 1
+        DEBUG: 1
+        
+volumes:
+  todo-data-volume:
+    driver: local
+
+services:
+  postgres:
+      image: postgres
+      restart: always
+      environment:
+          POSTGRES_USER: postgres 
+          POSTGRES_DB: dev
+      <<: *default-volumes
+      logging:
+        options:
+            max-size: "5m"
+            max-file: "1"
+      environment:
+          PGDATA: /data/postgres
+      ports:
+          - "5432:5432"
+
+  backend:
+      << : *backend-service
+      << : *default-volumes
+      << : *code-volumes
+      command: ['sh', 'run.sh']
+      ports:
+          - "8000:8000"
+
+  frontend:
+      hostname: todo-front
+      build: 
+        context: .
+        dockerfile: "Dockerfile_react"
+      command: ['sh', 'start.sh']
+      << : *default-volumes
+      << : *code-volumes
+      working_dir: "/src/frontend"
+      environment:
+          USE_IP: "false"
+      ports:
+          - "3000:3000"

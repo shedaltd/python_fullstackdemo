@@ -1,0 +1,23 @@
+FROM ubuntu:14.04
+
+LABEL maintainer="dev@sheda.ltd" company="Sheda"
+RUN apt-get update && apt-get install -y curl
+RUN curl -sL https://deb.nodesource.com/setup_10.x | bash -
+RUN apt-get update && DEBIAN_FRONTEND=noninteractive \
+       apt-get install -y --force-yes --no-install-recommends nodejs
+
+RUN curl -o- -L https://yarnpkg.com/install.sh | bash
+
+WORKDIR /src/frontend/
+
+ADD frontend/package.json frontend/yarn.lock /tmp/
+
+RUN cd /tmp && $HOME/.yarn/bin/yarn install
+
+ADD frontend/ /src/frontend
+
+RUN cd /src/frontend/ && ln -s /tmp/node_modules
+
+ENTRYPOINT ["sh", "entrypoint.sh"]
+
+CMD ['$HOME/.yarn/bin/yarn', 'start']

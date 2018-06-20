@@ -1,0 +1,21 @@
+FROM python:3
+ENV PYTHONUNBUFFERED 1
+
+LABEL maintainer="dev@sheda.ltd" company="Sheda"
+
+RUN mkdir /src
+
+WORKDIR /src/
+
+ADD backend/requirements/ /src/backend/requirements
+RUN pip install virtualenv
+
+RUN virtualenv -p python3 env
+
+RUN . env/bin/activate && pip install -r backend/requirements/dev.txt
+
+ADD backend/ /src/backend
+
+ENV PYTHONPATH $PYTHONPATH:/src
+
+CMD cd ./backend && python manage.py runserver
