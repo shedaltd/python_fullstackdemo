@@ -7,6 +7,9 @@ source env/bin/activate
 rm -rf .tox
 tox
 
+# build
+cd ../frontend
+yarn run build
 # python manage.py collectstatic --noinput # first time to deployment
 
 cd ..

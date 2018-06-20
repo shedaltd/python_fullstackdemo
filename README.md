@@ -17,9 +17,9 @@
     - database:
         - MySQL/PostgreSQL/MongoDB
     - Deployment
-        - Docker
-        - Heroku
-        - CI
+        - Docker for dev
+        - Heroku to deploy
+        - CI to ensure code quality
 
 3. Setup
     - Backend Setup

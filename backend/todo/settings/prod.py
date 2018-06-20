@@ -14,6 +14,6 @@ DATABASES['default'] = dj_database_url.config(default=DATABASE_URI)
 WEBPACK_LOADER = {
     'DEFAULT': {
             'BUNDLE_DIR_NAME': 'bundles/',
-            'STATS_FILE': os.path.join(BASE_DIR, '../frontend/webpack-stats.prod.json'),
+            'STATS_FILE': os.path.join(BASE_DIR, 'webpack-stats.prod.json'),
         }
 }
