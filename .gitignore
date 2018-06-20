@@ -23,3 +23,4 @@ staticfiles
 
 # react 
 node_modules
+webpack-stats.dev.json
