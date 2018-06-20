@@ -23,3 +23,10 @@
 
 3. Setup
     - Backend Setup
+    - Frontend Setup
+    - Docker Setup
+    - Deploy to Heroku
+
+4. To be careful
+    - the database structure: especially be careful with `foregin keys`
+    - MongoDB might be a good solution for the early stage startup to verify the idea
