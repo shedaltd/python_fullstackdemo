@@ -1,4 +1,4 @@
-# An example technology stack choice for startups
+# A technology stack choice example for startups
 
 ## Introduction
 
