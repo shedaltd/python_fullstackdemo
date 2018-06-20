@@ -1,4 +1,15 @@
-# Index
+# Sheda Full Stack Demo
+
+## Introduction
+
+This repo is an example of full stack project with django and react.
+
+- backend is built by Django, altogether with Django Rest Framework
+- frontend is built by React
+- Development environment is created by Docker
+- Deployment is done by heroku
+
+## Index
 
 1. Criteria for choosing a technology stack
     - From product perspective
