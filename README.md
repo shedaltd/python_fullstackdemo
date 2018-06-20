@@ -1,6 +1,6 @@
 # Index
 
-1. CRITERIA FOR CHOOSING A TECHNOLOGY STACK
+1. Criteria for choosing a technology stack
     - From product perspective
         - Time to market
         - Cost
