@@ -45,4 +45,22 @@ As we have said, today we will talk about the technology stack choice: Django + 
 - Django is a high-level Python Web framework that encourages rapid development and clean, pragmatic design. It is released in 2005.
 - React is a JavaScript library for building user interfaces, backed by Facebook. It is released in 2013.
 
-The 2 framework both are open source and have powerful developer communities. There is a lot of tools and library to use. You can develop and deploy a tested high quality application quickly with them. 
+The 2 framework both are open source and have powerful developer communities. There is a lot of tools and library to use. You can develop and deploy a tested high quality application quickly with them.
+
+- Backend: Django + Django REST Framework
+- Frontend:
+  - React: Web app
+  - React Native: Mobile app
+  - Electron: Destkop app
+- Database:
+  - MySQL/PostgreSQL/MongoDB
+- Deployment:
+  - Docker to develop
+  - Heroku to deploy
+  - Continus Integration/Continue Delivery
+
+With this technology stack, you can make you application online in a day.
+
+## Setup
+
+### Backend Setup
