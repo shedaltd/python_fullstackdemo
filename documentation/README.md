@@ -128,6 +128,18 @@ With the technology stack above, you can make you application online in a day.
             ...
             'rest_framework-swagger',
           ]
+          REST_FRAMEWORK = {
+            'DEFAULT_RENDERER_CLASSES': (
+                'rest_framework.renderers.JSONRenderer',
+            ),
+            'DEFAULT_AUTHENTICATION': (
+                'rest_framework.authentication.SessionAuthentication',
+            ),
+            'DEFAULT_PERMISSION_CLASSES': (
+                'rest_framework.permissions.IsAuthenticated',
+            ),
+            'COERCE_DECIMAL_TO_STRING': False
+        }
       ```
   - edit `urls.py` to make it work
     ```python3
@@ -364,4 +376,32 @@ Things will be pretty easy when we use heroku to deploy and host the application
   - [how to install heroku](https://devcenter.heroku.com/articles/heroku-cli)
   - `heroku login`
 
-To deploy the Django application via heroku, we will need to 
+To deploy the Django application via heroku, we will need to change backend settings
+
+- Profile: contain the command to start the application
+- runtime.txt: specify the working environment for the application
+- requirements.txt: in backend direcotry and will be refered to requirements/prod.txt, heroku can only know the application is a Django application via this file.
+- install gunicorn:
+  - `pip install gunicorn # used to host the application`
+  - config it: `web: gunicorn todo.wsgi --log-file -`
+- config the static folder
+  - install whitenoise: `pip install whitenoise`
+  - add to settings
+    ```python3
+    MIDDLEWARE = [
+      # ...
+      'whitenoise.middleware.WhiteNoiseMiddleware',
+    ]
+    STATICFILES_DIRS = (
+      os.path.join(BASE_DIR, 'assets'),
+    )
+    STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+    STATIC_URL = '/static/'
+
+    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+    ```
+
+And then deploy it, the deployment scripts is in the repo root directory.
+
+Our demo link is [demo](https://shedafullstackdemo.herokuapp.com/)
