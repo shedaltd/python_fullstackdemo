@@ -226,8 +226,115 @@ With the technology stack above, you can make you application online in a day.
           # ...
       ]
       ```
+  - add production setting in `backend/settings/prod.py`
+    ```python3
+    from base import *
+
+    STATICFILES_DIRS = [
+        os.path.join(BASE_DIR, "assets"),
+    ]
+
+    WEBPACK_LOADER = {
+      'DEFAULT': {
+        'BUNDLE_DIR_NAME': 'bundles/',
+        'STATS_FILE': os.path.join(BASE_DIR, 'webpack-stats.prod.json'),
+      }
+    }
+    ```
+  - add bundles file to allow production js setting: `mkdir -p assets/bundles`
+
 - React part
   - install `webpack-bundle-tracker`: `npm install webpack-bundle-tracker --save-dev`
-  
+  - edit `/config/paths.js`
+    ```javascript
+    module.exports = {
+        // ... other values
+        statsRoot: resolveApp('../backend'),
+      }
+    ```
+  - edit development configuration
+    - edit `frontend/config/webpack.config.dev.js`
+      - add `const publicPath = 'http://localhost:3000/';`
+      - add `const publicUrl = 'http://localhost:3000/';`
+      - edit module exports part:
+        ```javascript
+        const BundleTracker = require('webpack-bundle-tracker');
+        module.exports = {
+          entry: [
+            // ...
+            require.resolve('webpack-dev-server/client') + '?http://localhost:3000',
+            require.resolve('webpack/hot/dev-server'),
+          ],
+          plugins: [
+            new BundleTracker({path: paths.statsRoot, filename: 'webpack-stats.dev.json'}),
+          ],
+        }
+        ```
+    - edit `webpackDevServer.conf.js`
+      ```javascript
+      // ...
+      host: host,
+      headers: {
+        'Access-Control-Allow-Origin': '*'
+      },
+      overlay: false,
+      // ...
+      ```
+  - edit production configuration
+    - edit `frontend/config/paths.js`
+      ```javascript
+      module.exports = {
+        // ...
+        appBuild: resolveApp('../assets/bundles/'),
+      };
+      ```
+    - edit `frontend/config/webpack.config.prod.js`
+      ```javascript
+      const BundleTracker = require('webpack-bundle-tracker');
 
+      const publicPath = "/static/bundles/";
+      const cssFilename = 'css/[name].[contenthash:8].css';
+
+      module.exports = {
+        // ...
+        output: {
+          // ...
+          filename: 'js/[name].[chunkhash:8].js',
+          chunkFilename: 'js/[name].[chunkhash:8].chunk.js',
+        },
+        module: {
+          // ...
+          rules: [
+            {
+              oneOf: [
+                // ...
+                {
+                  options: {
+                    limit: 10000,
+                    name: 'media/[name].[hash:8].[ext]',
+                  },
+                },
+                {
+                  // ...
+                  options: {
+                    name: 'media/[name].[hash:8].[ext]',
+                  },
+                },
+              ],
+            },
+          ],
+        },
+        plugins: [
+          // ...
+          new BundleTracker({path: paths.statsRoot, filename: 'webpack-stats.prod.json'}),
+        ],
+      }
+      ```
+- run it
+  - Dev:
+    - `python manage.py runserver`
+    - `yarn start`
+  - Prod:
+    - `yarn run build`
+    - `python manage.py runserver --settings=todo.settings.prod`
 
