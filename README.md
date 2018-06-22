@@ -9,6 +9,7 @@ This repo is an example of full stack project with django and react.
 - Development environment is created by Docker
 - Deployment is done by heroku
 
+To check the detailed documents: [Setup](/documentation/README.md)
 ## Index
 
 1. Criteria for choosing a technology stack
