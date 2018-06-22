@@ -59,8 +59,50 @@ The 2 framework both are open source and have powerful developer communities. Th
   - Heroku to deploy
   - Continus Integration/Continue Delivery
 
-With this technology stack, you can make you application online in a day.
+With the technology stack above, you can make you application online in a day.
 
 ## Setup
 
+- create the proejct directory
+  - `mkdir shedafullstackdemo`
+  - `cd ./shedafullstackdemo`
+  - `mkidr backend frontend`
+
 ### Backend Setup
+
+1. Setup Django
+- environment requirement: python3, pip3
+- Install virtualenv and create a virtual environment. Virtualenv is used to create a specific virtual env for the proejct. It will make it easier to manage your project.
+  - `cd ./backend`
+  - `pip3 install virtualenv # install package virtualenv`
+  - `virtualenv --python=python3 env # create virtual environment`
+  - `source env/bin/activate # activate the env`
+- Install Django and Create a project
+  - `pip3 install django`
+  - `django-admin startproejct todo .`
+- Setup the settings
+  - seperate requirements for different environment into seperate files, so we can manage the requirements for different environment(dev, staging, production) more easily.
+    - `mkdir requirements`
+    - `pip3 freeze > requirements/base.txt`
+    - `cd requirements`
+    - `echo '-r base.txt' > dev.txt`
+    - `echo '-r base.txt' > prod.txt`
+    - `echo '-r base.txt' > test.txt`
+  - seperate settings for different environment into seperate files.
+    - `cd ./todo`
+    - `mkdir settings && cd ./settings && touch __init__.py`
+    - `mv ../settings.py base.py`
+    - create the other 2 setting files for development and production: `dev.py prod.py`
+    - set BASE_DIR for django project to the root directory
+      - origin
+        - `BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))`
+      - change to
+        - `PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))`
+        - `BASE_DIR = os.path.dirname(PROJECT_DIR)`
+    - then later you can specifiy the setting for different environment via different file
+      - to run with specific environment: `python3 manage.py runserver --settings=todo.settings.xxx`
+    - run the django application and create the superuser
+      - `python3 manage.py runserver`
+      - `python3 manage.py createsuperuser`
+      - then you can check the `http://localhost:80000`
+- Set up rest framework
