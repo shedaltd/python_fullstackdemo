@@ -338,3 +338,30 @@ With the technology stack above, you can make you application online in a day.
     - `yarn run build`
     - `python manage.py runserver --settings=todo.settings.prod`
 
+### Setup Docker to develop
+
+We we do the development, especially cooperate with others, it will be very annoying to setup the development environment.
+As we can see from above, to make it work, we need to install pretty much libraries and packages, and not sure whether it will work in the end or not.
+Docker can help use avoid problems like that. After we set up the docker, we only need to run `docker-compose up` and then we can start concentrate on the developing, no need to distract by environment problem.
+
+For this application, we need 2 volumes, one is to host postgresql and store data, the other one is to store code.
+We also need to set up 2 working images for Django and React.
+Last but not least, we need add .dockerignore to ensure the code is clean.
+
+We can check the docker configuration in the root directory:
+
+- Dockerfile_django: image to host Django
+- Dockerfile_react: image to host react
+- docker-compose.yml: architecture
+- .dockerignore: ignore no need folders and files
+
+### Setup deployment via heroku
+
+We want to be able to continus delivery, so the product can respond to the market feedback quickly.
+Things will be pretty easy when we use heroku to deploy and host the application.
+
+- Install heroku and login:
+  - [how to install heroku](https://devcenter.heroku.com/articles/heroku-cli)
+  - `heroku login`
+
+To deploy the Django application via heroku, we will need to 
