@@ -1,5 +1,21 @@
 # Django + React: A technology stack choice example for startups
 
+- [Introduction](#Introduction)
+- [Criteria](#Criteria)
+- [Technology structure for web application](#Technology-structure-for-web-application)
+- [One choice: Django+React](#Django-+-React)
+- [Setup](#Setup)
+  - [Backend Setup](#Backend-Setup)
+    - [Setup Django](#Setup-Django)
+    - [Set up rest framework](#Set-up-rest-framework)
+    - [Set up test framework](#Set-up-test-framework)
+  - [Frontend Setup](#Frontend-Setup)
+    - [Basic Setup](Basic-Setup)
+    - [Integrate with Django](Integrate-with-Django)
+  - [Docker Setup](#Setup-Docker-to-develop)
+  - [Setup deployment via heroku](Setup-deployment-via-heroku)
+- [Tips](#Tips)
+
 ## Introduction
 
 When you are a founder, CEO, CTO or other stakeholders for a startup company and you are in charge of developing a software product, to be specific, a web application product. The first challenge you face is to choose the proper technoloy stack for the product. A good choice can lead the product to success. However, most non-technical founders are puzzled when presented with so many technology choices for developing their ideas. And they come with a fear that committing to the wrong language or framework will have serious consequences down the road.
@@ -405,3 +421,9 @@ To deploy the Django application via heroku, we will need to change backend sett
 And then deploy it, the deployment scripts is in the repo root directory.
 
 Our demo link is [demo](https://shedafullstackdemo.herokuapp.com/)
+
+## Tips
+
+1. Be careful when using the relationship database. As startup, in fact, not really know what the market wants, so we might need to change the data structure frequently. It can not be avoided, so we need to keep this in mind from the beginning of the project.
+2. MongoDB could be a good choice for a early stage start up as we need to change the data structure frequently.
+3. All the frontend and backend things are just a tool to make your product can be accessed by the customers. What really matters is the data behind it.
