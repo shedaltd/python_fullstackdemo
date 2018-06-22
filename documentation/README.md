@@ -70,7 +70,8 @@ With the technology stack above, you can make you application online in a day.
 
 ### Backend Setup
 
-1. Setup Django
+#### Setup Django
+
 - environment requirement: python3, pip3
 - Install virtualenv and create a virtual environment. Virtualenv is used to create a specific virtual env for the proejct. It will make it easier to manage your project.
   - `cd ./backend`
@@ -105,29 +106,31 @@ With the technology stack above, you can make you application online in a day.
       - `python3 manage.py runserver`
       - `python3 manage.py createsuperuser`
       - then you can check the `http://localhost:80000`
-- Set up rest framework
+
+#### Set up rest framework
+
   Django Rest Framework allows you to do rapid development with Django.
-  - Install Django Rest Framework
-    - `pip3 install djangorestframework`
-  - Set up the settings
-    1. add rest framework into `INSTALLED_APPS`
+- Install Django Rest Framework
+  - `pip3 install djangorestframework`
+- Set up the settings
+  1. add rest framework into `INSTALLED_APPS`
         ```python3
           INSTALLED_APPS = [
             ...
             'rest_framework',
           ]
         ```
-    2. install swagger to make the APIs web browserable
-    - `pip3 install django-rest-swagger`
-    - add rest_framework_swagger into `INSTALLED_APPS`
-        ```python3
+  2. install swagger to make the APIs web browserable
+  - `pip3 install django-rest-swagger`
+  - add rest_framework_swagger into `INSTALLED_APPS`
+      ```python3
           INSTALLED_APPS = [
             ...
             'rest_framework-swagger',
           ]
-          ```
-    - edit `urls.py` to make it work
-      ```python3
+      ```
+  - edit `urls.py` to make it work
+    ```python3
       from django.urls import path
       from rest_framework import routers
       from rest_framework_swagger.views import get_swagger_view
@@ -141,16 +144,24 @@ With the technology stack above, you can make you application online in a day.
           ...
       ]
       ```
-    - then run the application and check `http://localhost:8000/docs/`, you should be able to check the APIs
-- Set up test framework
+  - then run the application and check `http://localhost:8000/docs/`, you should be able to check the APIs
+
+#### Set up test framework
+
   Django have the in-built test module to make the test very easy
   Except the test, we also need to control the code speficition to make sure our code clean, readable and maintainable.
   We can use `tox` altogether with `coverage`, `flake8`, `isort`, `pytest` to reach that.
-  - Install packages:
-    - `pip3 install tox coverage flake8 isort`
-  - add tox, flake8, isort, coverage into `requirements/text.txt`
-  - create configuation files `tox.ini` and `setup.cfg` (check the backend folder)
-  - run the test: `tox`
-    - hint:
-      - sometimes when we run tox, it will tell us the library not installed, in fact, that is because the depencies for test need to be reinstalled. we can delete the folder .tox and run `tox` again
-  
+- Install packages:
+  - `pip3 install tox coverage flake8 isort`
+- add tox, flake8, isort, coverage into `requirements/text.txt`
+- create configuation files `tox.ini` and `setup.cfg` (check the backend folder)
+- run the test: `tox`
+  - hint:
+    - sometimes when we run tox, it will tell us the library not installed, in fact, that is because the depencies for test need to be reinstalled. we can delete the folder .tox and run `tox` again
+
+### Frontend Setup
+
+  Then we setup the frontend part for the demo with react
+
+- Environment requirement
+  - node, npm
