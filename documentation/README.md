@@ -66,7 +66,7 @@ With the technology stack above, you can make you application online in a day.
 - create the proejct directory
   - `mkdir shedafullstackdemo`
   - `cd ./shedafullstackdemo`
-  - `mkidr backend frontend`
+  - `mkidr backend`
 
 ### Backend Setup
 
@@ -81,7 +81,7 @@ With the technology stack above, you can make you application online in a day.
 - Install Django and Create a project
   - `pip3 install django`
   - `django-admin startproejct todo .`
-- Setup the settings
+- Setup Django settings
   - seperate requirements for different environment into seperate files, so we can manage the requirements for different environment(dev, staging, production) more easily.
     - `mkdir requirements`
     - `pip3 freeze > requirements/base.txt`
@@ -156,12 +156,78 @@ With the technology stack above, you can make you application online in a day.
 - add tox, flake8, isort, coverage into `requirements/text.txt`
 - create configuation files `tox.ini` and `setup.cfg` (check the backend folder)
 - run the test: `tox`
-  - hint:
-    - sometimes when we run tox, it will tell us the library not installed, in fact, that is because the depencies for test need to be reinstalled. we can delete the folder .tox and run `tox` again
+  - hint: sometimes when we run tox, it will tell us the library not installed, in fact, that is because the depencies for test need to be reinstalled. we can delete the folder .tox and run `tox` again
 
 ### Frontend Setup
 
   Then we setup the frontend part for the demo with react
 
+#### Basic Setup
+
 - Environment requirement
   - node, npm
+  - install react: `npm install -g create-react-app`
+  - init the react project: `create-react-app frontend`
+- Config structure
+  - run eject: `cd ./frontend && npm install eject`
+  - it will create the config structure for us
+
+#### Integrate with Django
+
+- Django part
+  - Install webpack loader: `pip3 install django-webpack-loader`
+  - edit settings:
+    ```python3
+    WEBPACK_LOADER = {
+      'DEFAULT': {
+              'BUNDLE_DIR_NAME': 'bundles/',
+              'STATS_FILE': os.path.join(BASE_DIR, 'webpack-stats.dev.json'),
+            }
+    }
+    ```
+  - add template and index page
+    - `cd ./backend && mkdir templates`
+    - add templates settings
+      ```python3
+      TEMPLATES = [
+          {
+              # ... other settings
+              'DIRS': [os.path.join(BASE_DIR, "templates"), ],
+              # ... other settings
+          },
+      ]
+      ```
+    - add `index.html` in template
+      ```html
+      {% load render_bundle from webpack_loader %}
+      <!DOCTYPE html>
+      <html>
+        <head>
+          <meta charset="UTF-8" />
+          <meta name="viewport" content="width=device-width" />
+          <title>Ponynote</title>
+        </head>
+        <body>
+          <div id="root">
+          </div>
+            {% render_bundle 'main' %}
+        </body>
+      </html>
+      ```
+  - config `urls.py`
+      ```python3
+      from django.urls import path
+      from django.views.generic import TemplateView
+      from rest_framework import routers
+
+      urlpatterns = [
+          # ...
+          path('', TemplateView.as_view(template_name="index.html"))
+          # ...
+      ]
+      ```
+- React part
+  - install `webpack-bundle-tracker`: `npm install webpack-bundle-tracker --save-dev`
+  
+
+
